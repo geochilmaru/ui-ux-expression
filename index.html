@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>바이브 코더 필수 용어 치트시트 | UI/UX & 모션 48선</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%22100%22%20%22100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Top App Navigation & Tab Bar -->
+  <header class="app-header">
+    <div class="header-container">
+      
+      <!-- Brand & Source Info -->
+      <div class="brand-section">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>
+            바이브 코더 필수 용어 치트시트
+            <span class="badge-video">코드깎는노인 1·2탄 완결</span>
+          </h1>
+          <p>AI 웹 개발 프롬프트 작성을 위한 인터랙티브 시각 레퍼런스</p>
+        </div>
+      </div>
+
+      <!-- Top Primary Tab Switcher -->
+      <nav class="main-tabs-wrapper" aria-label="치트시트 선택">
+        <button type="button" class="tab-btn active" id="tabBtnUi" data-tab="ui">
+          <span>🎨 UI/UX 용어</span>
+          <span class="tab-count">24</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnMotion" data-tab="motion">
+          <span>🎬 모션 용어</span>
+          <span class="tab-count">24</span>
+        </button>
+      </nav>
+
+      <!-- Utilities: Search & Controls -->
+      <div class="header-actions">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="용어 검색 (예: 드로어, Spring)" autocomplete="off">
+        </div>
+        <button type="button" id="btnToggleAnim" class="btn-ctrl" title="애니메이션 일시정지 / 재생">
+          <span>⏸</span> 일시정지
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Cheat Sheet Viewport -->
+  <main class="main-wrapper">
+    <!-- AI Request Formula Banner -->
+    <section id="formulaBanner" class="formula-banner" aria-label="AI 요청 공식">
+      <!-- Injected via JavaScript -->
+    </section>
+
+    <!-- Main Cheatsheet Board (1:1 recreation of Video 11:29 & 12:14 screen) -->
+    <section id="boardContainer" aria-label="치트시트 보드">
+      <!-- Dynamic Board Content Injected via JavaScript -->
+    </section>
+  </main>
+
+  <!-- Detail Slide-over Drawer for AI Prompt Copy -->
+  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+  <aside id="detailDrawer" class="detail-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div>
+        <div class="drawer-tag-row">
+          <span id="drawerCatBadge" class="drawer-cat-badge">레이아웃</span>
+          <span id="drawerNumBadge" class="drawer-num-badge"></span>
+        </div>
+        <h3 id="drawerTitle" class="drawer-title">Hero Section</h3>
+        <span id="drawerSubtitle" class="drawer-subtitle">첫 화면의 대표 영역</span>
+      </div>
+      <button type="button" id="drawerCloseBtn" class="drawer-close-btn" aria-label="닫기">✕</button>
+    </div>
+
+    <div class="drawer-body">
+      <div>
+        <div class="drawer-section-title">📌 용어 설명 및 개념</div>
+        <div id="drawerDesc" class="drawer-desc-box"></div>
+      </div>
+
+      <div>
+        <div class="drawer-section-title">🤖 AI 프롬프트 요청문 (복사해서 바로 사용)</div>
+        <div class="prompt-recipe-box">
+          <div id="drawerPrompt" class="prompt-text"></div>
+          <button type="button" id="btnCopyPrompt" class="btn-copy-prompt">
+            <span>📋</span> 프롬프트 원클릭 복사
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div class="drawer-section-title">💡 바이브 코딩 실전 팁</div>
+        <div class="drawer-desc-box" style="font-size: 0.82rem; color: #94a3b8;">
+          AI에게 화면이나 모션을 지시할 때는 두루뭉술하게 "멋지게 해줘"라고 말하지 마시고, <strong>[용어] + [원하는 동작] + [적용 조건]</strong> 형태로 명확하게 지시하면 수정 횟수를 획기적으로 줄일 수 있습니다.
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Global Toast Notification -->
+  <div id="toastNotice" class="toast-notice">
+    ✓ 프롬프트가 클립보드에 복사되었습니다!
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "ui-ux-expression",
+  "version": "1.0.0",
+  "private": true,
+  "description": "바이브 코더 필수 용어 치트시트 (코드깎는노인 UI 24 + 모션 24)",
+  "scripts": {
+    "start": "serve ."
+  }
+}

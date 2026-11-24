@@ -7,11 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // State
   let currentTab = 'ui'; // 'ui' | 'motion'
   let searchQuery = '';
+  let videoCategoryFilter = 'all';
   let animationsPaused = false;
 
   // DOM Elements
   const tabBtnUi = document.getElementById('tabBtnUi');
   const tabBtnMotion = document.getElementById('tabBtnMotion');
+  const tabBtnVideo = document.getElementById('tabBtnVideo');
   const boardContainer = document.getElementById('boardContainer');
   const searchInput = document.getElementById('searchInput');
   const btnToggleAnim = document.getElementById('btnToggleAnim');
@@ -33,19 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Tab Switching
   function switchTab(tabKey) {
     currentTab = tabKey;
-    if (tabKey === 'ui') {
-      tabBtnUi.classList.add('active');
-      tabBtnMotion.classList.remove('active');
-    } else {
-      tabBtnMotion.classList.add('active');
-      tabBtnUi.classList.remove('active');
-    }
+    tabBtnUi.classList.toggle('active', tabKey === 'ui');
+    tabBtnMotion.classList.toggle('active', tabKey === 'motion');
+    if (tabBtnVideo) tabBtnVideo.classList.toggle('active', tabKey === 'video');
     renderFormulaBanner();
     renderBoard();
   }
 
   tabBtnUi.addEventListener('click', () => switchTab('ui'));
   tabBtnMotion.addEventListener('click', () => switchTab('motion'));
+  if (tabBtnVideo) tabBtnVideo.addEventListener('click', () => switchTab('video'));
 
   // Search Filter
   searchInput.addEventListener('input', (e) => {
@@ -353,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
         default:
           return `<div style="font-size: 10px; color: var(--text-dim);">UI</div>`;
       }
-    } else {
+    } else if (tab === 'motion') {
       // Motion Tab (24 terms)
       switch (item.id) {
         case 'fade':
@@ -546,13 +545,439 @@ document.addEventListener('DOMContentLoaded', () => {
         default:
           return `<div style="font-size: 10px; color: var(--text-dim);">Motion</div>`;
       }
+
+    } else if (tab === 'video') {
+      switch (item.id) {
+        case 'dolly-in':
+          return `
+            <div class="v-preview v-dolly-in">
+              <div class="v-cam-grid"></div>
+              <div class="v-char-orange"></div>
+            </div>
+          `;
+        case 'zoom-in':
+          return `
+            <div class="v-preview v-zoom-in">
+              <div class="v-bg-trees"></div>
+              <div class="v-char-orange"></div>
+              <div class="v-viewfinder"></div>
+            </div>
+          `;
+        case 'pan-tilt':
+          return `
+            <div class="v-preview v-pan-tilt">
+              <div class="v-pan-world">
+                <div class="v-houses"></div>
+                <div class="v-hills"></div>
+                <div class="v-sky"><div class="v-sun"></div></div>
+              </div>
+            </div>
+          `;
+        case 'tracking-shot':
+          return `
+            <div class="v-preview v-tracking">
+              <div class="v-track-bg"></div>
+              <div class="v-track-ground"></div>
+              <div class="v-char-orange walking"></div>
+            </div>
+          `;
+        case 'crane-shot':
+          return `
+            <div class="v-preview v-crane">
+              <div class="v-crane-world">
+                <div class="v-char-orange small"></div>
+                <div class="v-village"></div>
+              </div>
+            </div>
+          `;
+        case 'dolly-zoom':
+          return `
+            <div class="v-preview v-dolly-zoom">
+              <div class="v-dz-bg"></div>
+              <div class="v-char-orange static"></div>
+            </div>
+          `;
+        case 'arc-shot':
+          return `
+            <div class="v-preview v-arc">
+              <div class="v-arc-orbit">
+                <div class="v-char-orange"></div>
+                <div class="v-arc-cam">🎥</div>
+              </div>
+            </div>
+          `;
+        case 'crash-zoom':
+          return `
+            <div class="v-preview v-crash-zoom">
+              <div class="v-char-orange"></div>
+              <div class="v-zoom-lines"></div>
+            </div>
+          `;
+        case 'handheld':
+          return `
+            <div class="v-preview v-handheld">
+              <div class="v-char-orange"></div>
+              <div class="v-rec-dot">● REC</div>
+            </div>
+          `;
+        case 'high-angle':
+          return `
+            <div class="v-preview v-high-angle">
+              <div class="v-playground-top">
+                <div class="v-char-orange tiny"></div>
+                <div class="v-swing-shadow"></div>
+              </div>
+            </div>
+          `;
+        case 'low-angle':
+          return `
+            <div class="v-preview v-low-angle">
+              <div class="v-low-horizon"></div>
+              <div class="v-char-orange giant"></div>
+            </div>
+          `;
+        case 'birds-eye-view':
+          return `
+            <div class="v-preview v-birds-eye">
+              <div class="v-topdown-map">
+                <div class="v-char-orange-top"></div>
+                <div class="v-top-trees"></div>
+                <div class="v-top-roads"></div>
+              </div>
+            </div>
+          `;
+        case 'dutch-angle':
+          return `
+            <div class="v-preview v-dutch-angle">
+              <div class="v-canted-frame">
+                <div class="v-swing-empty"></div>
+                <div class="v-char-orange"></div>
+              </div>
+            </div>
+          `;
+        case 'extreme-close-up':
+          return `
+            <div class="v-preview v-extreme-cu">
+              <div class="v-macro-eye">
+                <div class="v-pupil"></div>
+                <div class="v-teardrop"></div>
+              </div>
+            </div>
+          `;
+        case 'pov-shot':
+          return `
+            <div class="v-preview v-pov">
+              <div class="v-pov-swing-ropes"></div>
+              <div class="v-pov-landscape"></div>
+            </div>
+          `;
+        case 'jump-cut':
+          return `
+            <div class="v-preview v-jump-cut">
+              <div class="v-jump-char"></div>
+              <div class="v-cut-indicator">✂️ JUMP</div>
+            </div>
+          `;
+        case 'dissolve':
+          return `
+            <div class="v-preview v-dissolve">
+              <div class="v-scene-day"></div>
+              <div class="v-scene-sunset"></div>
+            </div>
+          `;
+        case 'wipe':
+          return `
+            <div class="v-preview v-wipe">
+              <div class="v-wipe-scene1"></div>
+              <div class="v-wipe-scene2"></div>
+              <div class="v-wipe-bar"></div>
+            </div>
+          `;
+        case 'match-cut':
+          return `
+            <div class="v-preview v-match-cut">
+              <div class="v-match-moon"></div>
+              <div class="v-match-char"></div>
+            </div>
+          `;
+        case 'whip-pan':
+          return `
+            <div class="v-preview v-whip-pan">
+              <div class="v-whip-scene-a"></div>
+              <div class="v-whip-blur"></div>
+              <div class="v-whip-scene-b"></div>
+            </div>
+          `;
+        case 'smash-cut':
+          return `
+            <div class="v-preview v-smash-cut">
+              <div class="v-quiet-night">💤</div>
+              <div class="v-loud-alarm">⏰ 쾅!</div>
+            </div>
+          `;
+        case 'iris':
+          return `
+            <div class="v-preview v-iris">
+              <div class="v-iris-mask"></div>
+              <div class="v-char-orange"></div>
+            </div>
+          `;
+        case 'fade-out':
+          return `
+            <div class="v-preview v-fade-out">
+              <div class="v-fade-scene"></div>
+              <div class="v-fade-curtain"></div>
+            </div>
+          `;
+        case 'montage':
+          return `
+            <div class="v-preview v-montage">
+              <div class="v-montage-strip">
+                <div class="v-m-clip clip-1">🛹 연습</div>
+                <div class="v-m-clip clip-2">💪 땀방울</div>
+                <div class="v-m-clip clip-3">🏆 성공</div>
+              </div>
+            </div>
+          `;
+        case 'cross-cutting':
+          return `
+            <div class="v-preview v-cross-cutting">
+              <div class="v-cross-box left"><div class="v-running-char">🏃 달리기</div></div>
+              <div class="v-cross-box right"><div class="v-speeding-train">🚆 기차</div></div>
+            </div>
+          `;
+        case 'split-screen':
+          return `
+            <div class="v-preview v-split-screen">
+              <div class="v-split-left"><div class="v-station">🚉 기차역</div></div>
+              <div class="v-split-line"></div>
+              <div class="v-split-right"><div class="v-beach">🌊 바다방</div></div>
+            </div>
+          `;
+        case 'insert-shot':
+          return `
+            <div class="v-preview v-insert-shot">
+              <div class="v-insert-bg"></div>
+              <div class="v-insert-overlay">
+                <div class="v-pocket-watch">🕒 5:00</div>
+              </div>
+            </div>
+          `;
+        case 'flashback':
+          return `
+            <div class="v-preview v-flashback">
+              <div class="v-flash-memory"><div class="v-char-young">🌱 어린시절</div></div>
+              <div class="v-flash-burn"></div>
+            </div>
+          `;
+        case 'slow-motion':
+          return `
+            <div class="v-preview v-slow-motion">
+              <div class="v-fountain-drop"></div>
+              <div class="v-water-ripple"></div>
+            </div>
+          `;
+        case 'timelapse':
+          return `
+            <div class="v-preview v-timelapse">
+              <div class="v-tl-sky"></div>
+              <div class="v-tl-sun"></div>
+              <div class="v-tl-stars"></div>
+            </div>
+          `;
+        case 'speed-ramp':
+          return `
+            <div class="v-preview v-speed-ramp">
+              <div class="v-ramp-char"></div>
+              <div class="v-ramp-indicator">1x ➔ 0.1x ➔ 4x</div>
+            </div>
+          `;
+        case 'freeze-frame':
+          return `
+            <div class="v-preview v-freeze-frame">
+              <div class="v-freeze-char"></div>
+              <div class="v-name-tag">🍊 바이브 코더</div>
+            </div>
+          `;
+        case 'reverse':
+          return `
+            <div class="v-preview v-reverse">
+              <div class="v-pot-shards">
+                <div class="shard s1"></div>
+                <div class="shard s2"></div>
+                <div class="shard s3"></div>
+              </div>
+              <div class="v-rev-badge">⏪ REVERSE</div>
+            </div>
+          `;
+        case 'hyperlapse':
+          return `
+            <div class="v-preview v-hyperlapse">
+              <div class="v-hyper-tunnel">
+                <div class="v-lamp l1"></div>
+                <div class="v-lamp l2"></div>
+                <div class="v-lamp l3"></div>
+              </div>
+            </div>
+          `;
+        case 'bullet-time':
+          return `
+            <div class="v-preview v-bullet-time">
+              <div class="v-bt-char-frozen"></div>
+              <div class="v-bt-camera-ring">
+                <div class="v-bt-cam">🎥</div>
+              </div>
+            </div>
+          `;
+        case 'stop-motion':
+          return `
+            <div class="v-preview v-stop-motion">
+              <div class="v-toy-block b1"></div>
+              <div class="v-toy-block b2"></div>
+              <div class="v-toy-block b3"></div>
+            </div>
+          `;
+        case 'rack-focus':
+          return `
+            <div class="v-preview v-rack-focus">
+              <div class="v-rf-flower">🌸</div>
+              <div class="v-rf-char">🍊</div>
+            </div>
+          `;
+        case 'lens-flare':
+          return `
+            <div class="v-preview v-lens-flare">
+              <div class="v-flare-sun"></div>
+              <div class="v-flare-ring r1"></div>
+              <div class="v-flare-ring r2"></div>
+              <div class="v-flare-beam"></div>
+            </div>
+          `;
+        case 'camera-shake':
+          return `
+            <div class="v-preview v-camera-shake">
+              <div class="v-heavy-weight">💣</div>
+              <div class="v-ground-crack"></div>
+            </div>
+          `;
+        case 'motion-blur':
+          return `
+            <div class="v-preview v-motion-blur">
+              <div class="v-blur-train">
+                <div class="v-streak s1"></div>
+                <div class="v-streak s2"></div>
+              </div>
+            </div>
+          `;
+        case 'color-grading':
+          return `
+            <div class="v-preview v-color-grading">
+              <div class="v-cg-split">
+                <div class="v-cg-raw">RAW</div>
+                <div class="v-cg-lut">TEAL & ORANGE</div>
+              </div>
+            </div>
+          `;
+        case 'letterbox':
+          return `
+            <div class="v-preview v-letterbox">
+              <div class="v-lb-bar top"></div>
+              <div class="v-lb-scene">2.39 : 1 SCOPE</div>
+              <div class="v-lb-bar bottom"></div>
+            </div>
+          `;
+        case 'bokeh':
+          return `
+            <div class="v-preview v-bokeh">
+              <div class="v-bokeh-orbs">
+                <div class="bo-1"></div>
+                <div class="bo-2"></div>
+                <div class="bo-3"></div>
+                <div class="bo-4"></div>
+              </div>
+              <div class="v-char-silhouette"></div>
+            </div>
+          `;
+        case 'tilt-shift':
+          return `
+            <div class="v-preview v-tilt-shift">
+              <div class="v-ts-blur-top"></div>
+              <div class="v-ts-focus-strip">
+                <div class="v-mini-car">🚗</div>
+                <div class="v-mini-bus">🚌</div>
+              </div>
+              <div class="v-ts-blur-bottom"></div>
+            </div>
+          `;
+        case 'fisheye-lens':
+          return `
+            <div class="v-preview v-fisheye">
+              <div class="v-fe-circle">
+                <div class="v-fe-grid"></div>
+                <div class="v-char-orange fe-bulge"></div>
+              </div>
+            </div>
+          `;
+        case 'god-rays':
+          return `
+            <div class="v-preview v-god-rays">
+              <div class="v-tree-canopy"></div>
+              <div class="v-light-shafts">
+                <div class="beam b1"></div>
+                <div class="beam b2"></div>
+                <div class="beam b3"></div>
+              </div>
+              <div class="v-char-orange"></div>
+            </div>
+          `;
+        case 'selective-color':
+          return `
+            <div class="v-preview v-selective-color">
+              <div class="v-sc-crowd-mono">
+                <span class="mono-char">👤</span>
+                <span class="mono-char">👤</span>
+              </div>
+              <div class="v-char-orange vivid">🍊</div>
+            </div>
+          `;
+        case 'day-for-night':
+          return `
+            <div class="v-preview v-day-for-night">
+              <div class="v-dfn-layer">
+                <div class="v-dfn-moon">🌕</div>
+                <div class="v-char-orange blue-tint"></div>
+              </div>
+            </div>
+          `;
+        case 'film-grain':
+          return `
+            <div class="v-preview v-film-grain">
+              <div class="v-vintage-scene"><div class="v-char-orange"></div></div>
+              <div class="v-grain-overlay"></div>
+              <div class="v-film-scratch"></div>
+            </div>
+          `;
+        case 'one-take':
+          return `
+            <div class="v-preview v-one-take">
+              <div class="v-one-take-track">
+                <div class="room room-1">🏠 집</div>
+                <div class="room room-2">🚪 골목</div>
+                <div class="room room-3">🏛️ 광장</div>
+              </div>
+            </div>
+          `;
+        default:
+          return `<div style="font-size: 10px; color: var(--color-gold);">🎬 50 Video</div>`;
+      }
     }
   }
 
   // Render Cheatsheet Board
   function renderBoard() {
     const data = CHEAT_SHEET_DATA[currentTab];
-    
+    const isVideo = currentTab === 'video';
+
     let html = `
       <div class="cheatsheet-board">
         <div class="board-header">
@@ -568,11 +993,35 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="channel-logo-text">${data.channel}</span>
           </div>
         </div>
-
-        <div class="board-grid-3col">
     `;
 
+    // Category Filter Bar for Video Cheatsheet (7 parts)
+    if (isVideo) {
+      html += `
+        <div class="video-category-filter" role="tablist" aria-label="영상 기법 파트 선택">
+          <button type="button" class="v-pill-btn ${videoCategoryFilter === 'all' ? 'active' : ''}" data-part="all">전체보기 (50)</button>
+          <button type="button" class="v-pill-btn ${videoCategoryFilter === 'part1' ? 'active' : ''}" data-part="part1">1부 카메라 무빙 (9)</button>
+          <button type="button" class="v-pill-btn ${videoCategoryFilter === 'part2' ? 'active' : ''}" data-part="part2">2부 앵글과 숏 (6)</button>
+          <button type="button" class="v-pill-btn ${videoCategoryFilter === 'part3' ? 'active' : ''}" data-part="part3">3부 장면 전환 (8)</button>
+          <button type="button" class="v-pill-btn ${videoCategoryFilter === 'part4' ? 'active' : ''}" data-part="part4">4부 편집 기법 (5)</button>
+          <button type="button" class="v-pill-btn ${videoCategoryFilter === 'part5' ? 'active' : ''}" data-part="part5">5부 시간 (8)</button>
+          <button type="button" class="v-pill-btn ${videoCategoryFilter === 'part6' ? 'active' : ''}" data-part="part6">6부 렌즈·빛·색 (6)</button>
+          <button type="button" class="v-pill-btn ${videoCategoryFilter === 'part7' ? 'active' : ''}" data-part="part7">7부 특수 렌즈와 룩 (8)</button>
+        </div>
+        <div class="board-grid-video">
+      `;
+    } else {
+      html += `
+        <div class="board-grid-3col">
+      `;
+    }
+
     data.sections.forEach(section => {
+      // If video and filtered by category, skip non-matching sections
+      if (isVideo && videoCategoryFilter !== 'all' && section.id !== videoCategoryFilter) {
+        return;
+      }
+
       const filteredItems = section.items.filter(item => {
         if (!searchQuery) return true;
         return (
@@ -583,15 +1032,21 @@ document.addEventListener('DOMContentLoaded', () => {
         );
       });
 
+      if (filteredItems.length === 0 && searchQuery) return;
+
       let gridClass = 'motion-grid-2x4';
       if (currentTab === 'ui') {
         if (section.id === 'layout') gridClass = 'layout-grid';
         else if (section.id === 'component') gridClass = 'component-grid';
         else if (section.id === 'effect') gridClass = 'effect-grid';
+      } else if (isVideo) {
+        gridClass = 'video-cards-grid';
       }
 
+      const blockClass = isVideo ? 'video-section-block' : 'sheet-column';
+
       html += `
-        <div class="sheet-column" id="col-${section.id}">
+        <div class="${blockClass}" id="col-${section.id}">
           <div class="column-header">
             <h3 class="col-title">${section.title}</h3>
             <span class="col-en">${section.enTitle}</span>
@@ -602,14 +1057,19 @@ document.addEventListener('DOMContentLoaded', () => {
       filteredItems.forEach(item => {
         const previewHtml = getPreviewHtml(item, currentTab);
         const heroClass = (currentTab === 'ui' && item.id === 'hero-section') ? 'card-hero' : '';
-        const numHtml = item.num ? `<span class="card-num">${item.num}</span>` : '';
+        const filmCardClass = isVideo ? 'film-card' : '';
+        const numHtml = item.num ? `<span class="card-num">${item.num}${isVideo ? ' ▶' : ''}</span>` : '';
+        const sprocketsTop = isVideo ? '<div class="film-sprockets top"></div>' : '';
+        const sprocketsBottom = isVideo ? '<div class="film-sprockets bottom"></div>' : '';
 
         html += `
-          <div class="sheet-card ${heroClass}" data-item-id="${item.id}" data-tab="${currentTab}">
+          <div class="sheet-card ${heroClass} ${filmCardClass}" data-item-id="${item.id}" data-tab="${currentTab}">
+            ${sprocketsTop}
             <div class="card-copy-hint">클릭하여 프롬프트 복사</div>
             <div class="card-preview">
               ${previewHtml}
             </div>
+            ${sprocketsBottom}
             <div class="card-info">
               <div class="card-title-row">
                 <span class="card-title">${item.title}</span>
@@ -633,6 +1093,17 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     boardContainer.innerHTML = html;
+
+    // Attach category filter button listeners for video tab
+    if (isVideo) {
+      const filterBtns = boardContainer.querySelectorAll('.v-pill-btn');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          videoCategoryFilter = e.currentTarget.dataset.part;
+          renderBoard();
+        });
+      });
+    }
 
     attachCardListeners();
     initDynamicLiveSimulations();

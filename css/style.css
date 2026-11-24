@@ -2452,3 +2452,1275 @@ body.pause-animations * {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ==========================================================================
+   VIDEO 3: VIDEO CHEAT SHEET (50 TECHNIQUES) - FILM STRIP & LIVE PREVIEWS
+   ========================================================================== */
+
+/* Film Strip Card Aesthetics */
+.sheet-card.film-card {
+  background: #0d1220;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 10px;
+  position: relative;
+  padding: 8px 10px;
+}
+
+.sheet-card.film-card:hover {
+  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+.sheet-card.film-card .card-preview {
+  height: 100px;
+  margin: 6px 0;
+  background: #070a12;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+/* Film Sprocket Perforations (Top & Bottom) */
+.film-sprockets {
+  height: 8px;
+  width: 100%;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.35) 2.5px, transparent 3px);
+  background-size: 14px 8px;
+  background-repeat: repeat-x;
+  background-position: center;
+  opacity: 0.7;
+}
+
+.film-sprockets.top {
+  margin-bottom: 2px;
+}
+
+.film-sprockets.bottom {
+  margin-top: 2px;
+}
+
+/* Video Category Filter Bar */
+.video-category-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 4px 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  scrollbar-width: thin;
+}
+
+.video-category-filter::-webkit-scrollbar {
+  height: 4px;
+}
+.video-category-filter::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.v-pill-btn {
+  white-space: nowrap;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.v-pill-btn:hover {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fff;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.v-pill-btn.active {
+  background: var(--color-gold);
+  color: #000;
+  border-color: var(--color-gold-light);
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+}
+
+/* Video Board Grid */
+.board-grid-video {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.video-section-block {
+  background: var(--bg-column);
+  border: 1px solid var(--border-col);
+  border-radius: var(--radius-col);
+  padding: 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.video-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+@media (min-width: 1400px) {
+  .video-cards-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Orange Vibe Character Base */
+.v-char-orange {
+  width: 32px;
+  height: 32px;
+  background: radial-gradient(circle at 35% 35%, #fb923c, #ea580c);
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(234, 88, 12, 0.4);
+  flex-shrink: 0;
+}
+
+/* Eyes */
+.v-char-orange::before,
+.v-char-orange::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 5px;
+  background: #1e1b4b;
+  border-radius: 50%;
+  top: 10px;
+}
+.v-char-orange::before { left: 9px; }
+.v-char-orange::after { right: 9px; }
+
+/* Little green leaf stem on head */
+.v-char-orange-leaf {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 5px;
+  background: #22c55e;
+  border-radius: 0 80% 0 80%;
+}
+
+/* Common Preview Base */
+.v-preview {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #080d1a;
+}
+
+/* 01. Dolly In */
+.v-dolly-in .v-cam-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.v-dolly-in .v-char-orange {
+  animation: animDollyIn 3s ease-in-out infinite;
+}
+@keyframes animDollyIn {
+  0%, 100% { transform: scale(0.75); }
+  50% { transform: scale(1.45); }
+}
+
+/* 02. Zoom In */
+.v-zoom-in .v-bg-trees {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  height: 18px;
+  background: repeating-linear-gradient(90deg, #1e293b 0 10px, transparent 10px 20px);
+}
+.v-zoom-in .v-char-orange {
+  animation: animZoomIn 3s ease-in-out infinite;
+}
+.v-zoom-in .v-viewfinder {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 1.5px dashed rgba(245, 158, 11, 0.6);
+  border-radius: 4px;
+  pointer-events: none;
+  animation: animPulseBlink 1.5s ease-in-out infinite;
+}
+@keyframes animZoomIn {
+  0%, 100% { transform: scale(0.85); }
+  50% { transform: scale(1.75); }
+}
+@keyframes animPulseBlink {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* 03. Pan & Tilt */
+.v-pan-tilt {
+  overflow: hidden;
+}
+.v-pan-world {
+  width: 240px;
+  height: 160px;
+  position: absolute;
+  animation: animPanTilt 5s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+.v-pan-world .v-sun {
+  width: 20px;
+  height: 20px;
+  background: #f59e0b;
+  border-radius: 50%;
+  box-shadow: 0 0 16px #fbbf24;
+  margin-left: 140px;
+}
+.v-pan-world .v-hills {
+  width: 100%;
+  height: 35px;
+  background: linear-gradient(135deg, #0f766e, #134e4a);
+  border-radius: 50% 50% 0 0;
+}
+@keyframes animPanTilt {
+  0%, 100% { transform: translate(30px, 15px); }
+  45% { transform: translate(-30px, 15px); }
+  75% { transform: translate(-30px, 45px); }
+}
+
+/* 04. Tracking Shot */
+.v-tracking .v-track-bg {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, #1e293b 0 20px, transparent 20px 60px);
+  animation: animTrackScroll 3s linear infinite;
+  opacity: 0.4;
+}
+.v-tracking .v-track-ground {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 22px;
+  background: #111827;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.v-tracking .v-char-orange.walking {
+  animation: animWalkBob 0.6s ease-in-out infinite alternate;
+  z-index: 2;
+}
+@keyframes animTrackScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes animWalkBob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+/* 05. Crane Shot */
+.v-crane .v-crane-world {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: animCrane 4s ease-in-out infinite;
+}
+.v-crane .v-village {
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+@keyframes animCrane {
+  0%, 100% { transform: scale(1.4) translateY(15px); }
+  50% { transform: scale(0.6) translateY(-20px); }
+}
+
+/* 06. Dolly Zoom (Vertigo) */
+.v-dolly-zoom .v-dz-bg {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, #312e81 10%, #090d16 80%);
+  animation: animVertigoBg 3.5s ease-in-out infinite;
+}
+.v-dolly-zoom .v-char-orange.static {
+  z-index: 2;
+  transform: scale(1);
+}
+@keyframes animVertigoBg {
+  0%, 100% { transform: scale(1.8); }
+  50% { transform: scale(0.7); }
+}
+
+/* 07. Arc Shot */
+.v-arc {
+  perspective: 500px;
+}
+.v-arc-orbit {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: animArcOrbit 4s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v-arc-cam {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+}
+@keyframes animArcOrbit {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* 08. Crash Zoom */
+.v-crash-zoom .v-char-orange {
+  animation: animCrashZoom 2.5s cubic-bezier(0.85, 0, 0.15, 1) infinite;
+}
+.v-crash-zoom .v-zoom-lines {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 30%, rgba(245, 158, 11, 0.15) 100%);
+}
+@keyframes animCrashZoom {
+  0%, 75% { transform: scale(0.75); }
+  85%, 95% { transform: scale(2.4); }
+  100% { transform: scale(0.75); }
+}
+
+/* 09. Handheld */
+.v-handheld .v-char-orange {
+  animation: animHandheld 2.5s ease-in-out infinite;
+}
+.v-handheld .v-rec-dot {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  font-size: 8px;
+  color: #ef4444;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  animation: animRecBlink 1s infinite;
+}
+@keyframes animHandheld {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-3px, 2px) rotate(-1.5deg); }
+  40% { transform: translate(2px, -3px) rotate(1deg); }
+  60% { transform: translate(-2px, -2px) rotate(-1deg); }
+  80% { transform: translate(3px, 1px) rotate(1.5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+@keyframes animRecBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* 10. High Angle */
+.v-high-angle .v-playground-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: perspective(300px) rotateX(45deg);
+}
+.v-high-angle .v-char-orange.tiny {
+  transform: scale(0.7);
+}
+.v-high-angle .v-swing-shadow {
+  width: 40px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  margin-top: 4px;
+}
+
+/* 11. Low Angle */
+.v-low-angle {
+  align-items: flex-end;
+  padding-bottom: 6px;
+}
+.v-low-angle .v-char-orange.giant {
+  transform: scale(1.6);
+  box-shadow: 0 10px 25px rgba(234, 88, 12, 0.6);
+}
+.v-low-angle .v-low-horizon {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 12px;
+  background: #1e293b;
+}
+
+/* 12. Bird's Eye View */
+.v-birds-eye .v-topdown-map {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  background: #134e4a;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v-birds-eye .v-char-orange-top {
+  width: 22px;
+  height: 22px;
+  background: #ea580c;
+  border-radius: 50%;
+  border: 2px solid #fb923c;
+}
+
+/* 13. Dutch Angle */
+.v-dutch-angle .v-canted-frame {
+  transform: rotate(-22deg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: animDutchSway 4s ease-in-out infinite alternate;
+}
+@keyframes animDutchSway {
+  0% { transform: rotate(-18deg); }
+  100% { transform: rotate(-28deg); }
+}
+
+/* 14. Extreme Close-Up */
+.v-extreme-cu .v-macro-eye {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+.v-extreme-cu .v-pupil {
+  width: 24px;
+  height: 24px;
+  background: #0f172a;
+  border-radius: 50%;
+  position: relative;
+  animation: animPupilGlisten 2s infinite alternate;
+}
+.v-extreme-cu .v-teardrop {
+  position: absolute;
+  bottom: 4px;
+  right: 12px;
+  width: 6px;
+  height: 9px;
+  background: #38bdf8;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: animTearFall 2s infinite;
+}
+@keyframes animPupilGlisten {
+  0% { transform: scale(0.9); }
+  100% { transform: scale(1.1); }
+}
+@keyframes animTearFall {
+  0% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(12px); opacity: 0; }
+}
+
+/* 15. POV Shot */
+.v-pov .v-pov-swing-ropes {
+  position: absolute;
+  inset: 0;
+  border-left: 3px solid #78350f;
+  border-right: 3px solid #78350f;
+  animation: animPovSwing 2s ease-in-out infinite alternate;
+}
+.v-pov .v-pov-landscape {
+  font-size: 20px;
+  animation: animPovSway 2s ease-in-out infinite alternate;
+}
+@keyframes animPovSwing {
+  0% { transform: translateY(-10px) scale(0.95); }
+  100% { transform: translateY(10px) scale(1.05); }
+}
+@keyframes animPovSway {
+  0% { transform: scale(0.9) translateY(5px); }
+  100% { transform: scale(1.1) translateY(-5px); }
+}
+
+/* 16. Jump Cut */
+.v-jump-cut .v-jump-char {
+  width: 28px;
+  height: 28px;
+  background: #ea580c;
+  border-radius: 50%;
+  animation: animJumpCut 2.4s steps(1) infinite;
+}
+.v-jump-cut .v-cut-indicator {
+  position: absolute;
+  bottom: 6px;
+  font-size: 8px;
+  color: #fbbf24;
+  font-weight: 700;
+}
+@keyframes animJumpCut {
+  0% { transform: translateX(-35px); }
+  33% { transform: translateX(0); }
+  66% { transform: translateX(35px); }
+  100% { transform: translateX(-35px); }
+}
+
+/* 17. Dissolve */
+.v-dissolve .v-scene-day {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0284c7, #38bdf8);
+}
+.v-dissolve .v-scene-sunset {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #f97316, #4c1d95);
+  animation: animDissolve 3s ease-in-out infinite alternate;
+}
+@keyframes animDissolve {
+  0%, 20% { opacity: 0; }
+  80%, 100% { opacity: 1; }
+}
+
+/* 18. Wipe */
+.v-wipe .v-wipe-scene1 {
+  position: absolute;
+  inset: 0;
+  background: #1e1b4b;
+}
+.v-wipe .v-wipe-scene2 {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0284c7, #e0f2fe);
+  animation: animWipeReveal 3s ease-in-out infinite;
+}
+@keyframes animWipeReveal {
+  0%, 10% { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+  50%, 90% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  100% { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+}
+
+/* 19. Match Cut */
+.v-match-cut .v-match-moon {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: #fef08a;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #fde047;
+  animation: animMatchMoon 3s ease-in-out infinite alternate;
+}
+.v-match-cut .v-match-char {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: radial-gradient(circle at 35% 35%, #fb923c, #ea580c);
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(234, 88, 12, 0.4);
+  animation: animMatchChar 3s ease-in-out infinite alternate;
+}
+@keyframes animMatchMoon {
+  0%, 40% { opacity: 1; transform: scale(1); }
+  60%, 100% { opacity: 0; transform: scale(1.05); }
+}
+@keyframes animMatchChar {
+  0%, 40% { opacity: 0; transform: scale(0.95); }
+  60%, 100% { opacity: 1; transform: scale(1); }
+}
+
+/* 20. Whip Pan */
+.v-whip-pan .v-whip-scene-a {
+  position: absolute;
+  font-size: 18px;
+  animation: animWhipA 2.5s ease-in-out infinite;
+}
+.v-whip-pan .v-whip-scene-b {
+  position: absolute;
+  font-size: 18px;
+  animation: animWhipB 2.5s ease-in-out infinite;
+}
+@keyframes animWhipA {
+  0%, 35% { transform: translateX(0); opacity: 1; filter: blur(0); }
+  45% { transform: translateX(-80px); opacity: 0; filter: blur(10px); }
+  100% { transform: translateX(-80px); opacity: 0; }
+}
+@keyframes animWhipB {
+  0%, 45% { transform: translateX(80px); opacity: 0; filter: blur(10px); }
+  55%, 90% { transform: translateX(0); opacity: 1; filter: blur(0); }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* 21. Smash Cut */
+.v-smash-cut .v-quiet-night {
+  position: absolute;
+  font-size: 20px;
+  animation: animSmashQuiet 2.5s steps(1) infinite;
+}
+.v-smash-cut .v-loud-alarm {
+  position: absolute;
+  font-size: 18px;
+  font-weight: 800;
+  color: #ef4444;
+  animation: animSmashLoud 2.5s steps(1) infinite;
+}
+@keyframes animSmashQuiet {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0; }
+}
+@keyframes animSmashLoud {
+  0%, 60% { opacity: 0; }
+  61%, 100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* 22. Iris */
+.v-iris .v-iris-mask {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 200px #000;
+  animation: animIrisClose 3.2s ease-in-out infinite;
+  z-index: 2;
+}
+@keyframes animIrisClose {
+  0%, 20% { transform: scale(1.5); }
+  50%, 70% { transform: scale(0.35); }
+  100% { transform: scale(1.5); }
+}
+
+/* 23. Fade Out */
+.v-fade-out .v-fade-scene {
+  position: absolute;
+  font-size: 22px;
+}
+.v-fade-out .v-fade-curtain {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  animation: animFadeCurtain 3s ease-in-out infinite;
+}
+@keyframes animFadeCurtain {
+  0%, 20% { opacity: 0; }
+  50%, 70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* 24. Montage */
+.v-montage-strip {
+  display: flex;
+  gap: 8px;
+}
+.v-m-clip {
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  font-size: 10px;
+  animation: animMontageHighlight 2.4s steps(1) infinite;
+}
+.v-m-clip.clip-1 { animation-delay: 0s; }
+.v-m-clip.clip-2 { animation-delay: 0.8s; }
+.v-m-clip.clip-3 { animation-delay: 1.6s; }
+@keyframes animMontageHighlight {
+  0%, 33% { background: var(--color-gold); color: #000; font-weight: 700; transform: scale(1.1); }
+  34%, 100% { background: rgba(255, 255, 255, 0.08); color: #fff; transform: scale(1); }
+}
+
+/* 25. Cross-Cutting */
+.v-cross-cutting {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.v-cross-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.v-cross-box.left {
+  background: #1e293b;
+  animation: animCrossFlashL 1.6s steps(1) infinite;
+}
+.v-cross-box.right {
+  background: #0f172a;
+  animation: animCrossFlashR 1.6s steps(1) infinite;
+}
+@keyframes animCrossFlashL {
+  0%, 50% { border: 2px solid #38bdf8; color: #38bdf8; }
+  51%, 100% { border: 1px solid transparent; color: #64748b; }
+}
+@keyframes animCrossFlashR {
+  0%, 50% { border: 1px solid transparent; color: #64748b; }
+  51%, 100% { border: 2px solid #f43f5e; color: #f43f5e; }
+}
+
+/* 26. Split Screen */
+.v-split-screen {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.v-split-left, .v-split-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+.v-split-left { background: #1e1b4b; color: #a5b4fc; }
+.v-split-right { background: #0c4a6e; color: #7dd3fc; }
+.v-split-line { width: 2px; background: var(--color-gold); }
+
+/* 27. Insert Shot */
+.v-insert-shot .v-insert-bg {
+  position: absolute;
+  inset: 0;
+  background: #1e293b;
+  opacity: 0.6;
+}
+.v-insert-shot .v-pocket-watch {
+  font-size: 13px;
+  font-weight: 800;
+  background: #000;
+  border: 2px solid #fbbf24;
+  padding: 6px 10px;
+  border-radius: 6px;
+  animation: animInsertPulse 2.8s ease-in-out infinite;
+}
+@keyframes animInsertPulse {
+  0%, 20% { transform: scale(0.6); opacity: 0; }
+  35%, 65% { transform: scale(1.15); opacity: 1; }
+  80%, 100% { transform: scale(0.6); opacity: 0; }
+}
+
+/* 28. Flashback */
+.v-flashback .v-flash-memory {
+  font-size: 13px;
+  filter: sepia(0.8) contrast(1.2);
+}
+.v-flashback .v-flash-burn {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  animation: animFlashBurn 3s ease-in-out infinite;
+}
+@keyframes animFlashBurn {
+  0%, 15% { opacity: 0; }
+  20%, 30% { opacity: 0.85; }
+  50%, 100% { opacity: 0; }
+}
+
+/* 29. Slow Motion */
+.v-slow-motion .v-fountain-drop {
+  width: 10px;
+  height: 14px;
+  background: #38bdf8;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: animSlowDrop 3.5s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+.v-slow-motion .v-water-ripple {
+  position: absolute;
+  bottom: 15px;
+  width: 40px;
+  height: 10px;
+  border: 1.5px solid #38bdf8;
+  border-radius: 50%;
+  animation: animRippleExpand 3.5s ease-out infinite;
+}
+@keyframes animSlowDrop {
+  0% { transform: translateY(-30px); opacity: 0; }
+  30% { opacity: 1; }
+  70% { transform: translateY(12px); opacity: 1; }
+  80%, 100% { transform: translateY(14px) scale(1.3, 0.5); opacity: 0; }
+}
+@keyframes animRippleExpand {
+  0%, 60% { transform: scale(0.2); opacity: 0; }
+  75% { opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* 30. Time-lapse */
+.v-timelapse .v-tl-sky {
+  position: absolute;
+  inset: 0;
+  animation: animSkyCycle 3s linear infinite;
+}
+.v-timelapse .v-tl-sun {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #f59e0b;
+  border-radius: 50%;
+  box-shadow: 0 0 14px #fbbf24;
+  animation: animSunPath 3s linear infinite;
+}
+@keyframes animSkyCycle {
+  0%, 100% { background: #0284c7; }
+  50% { background: #4c1d95; }
+  70% { background: #090d16; }
+}
+@keyframes animSunPath {
+  0% { transform: translate(-40px, 20px); }
+  50% { transform: translate(0px, -20px); }
+  100% { transform: translate(40px, 20px); opacity: 0; }
+}
+
+/* 31. Speed Ramp */
+.v-speed-ramp .v-ramp-char {
+  width: 26px;
+  height: 26px;
+  background: #ea580c;
+  border-radius: 50%;
+  animation: animSpeedRamp 3s cubic-bezier(0.1, 1, 0.9, 0.1) infinite;
+}
+.v-speed-ramp .v-ramp-indicator {
+  position: absolute;
+  bottom: 6px;
+  font-size: 8px;
+  color: var(--color-gold);
+  font-family: var(--font-mono);
+}
+@keyframes animSpeedRamp {
+  0% { transform: translate(-40px, 15px); }
+  30% { transform: translate(-10px, -20px); }
+  70% { transform: translate(10px, -20px); }
+  100% { transform: translate(40px, 15px); }
+}
+
+/* 32. Freeze Frame */
+.v-freeze-frame .v-freeze-char {
+  width: 28px;
+  height: 28px;
+  background: #ea580c;
+  border-radius: 50%;
+  animation: animFreezeJump 3.2s ease-in-out infinite;
+}
+.v-freeze-frame .v-name-tag {
+  position: absolute;
+  background: #fbbf24;
+  color: #000;
+  font-weight: 800;
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  transform: translate(24px, -15px);
+  animation: animTagPop 3.2s ease-in-out infinite;
+}
+@keyframes animFreezeJump {
+  0% { transform: translateY(20px); }
+  30%, 75% { transform: translateY(-10px); }
+  100% { transform: translateY(20px); }
+}
+@keyframes animTagPop {
+  0%, 29% { opacity: 0; transform: scale(0.5); }
+  35%, 75% { opacity: 1; transform: scale(1) translate(24px, -15px); }
+  80%, 100% { opacity: 0; }
+}
+
+/* 33. Reverse */
+.v-reverse .v-pot-shards {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+.v-reverse .shard {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #b45309;
+  border-radius: 2px;
+}
+.v-reverse .shard.s1 { animation: animShard1 2.8s ease-in-out infinite; }
+.v-reverse .shard.s2 { animation: animShard2 2.8s ease-in-out infinite; }
+.v-reverse .shard.s3 { animation: animShard3 2.8s ease-in-out infinite; }
+.v-reverse .v-rev-badge {
+  position: absolute;
+  bottom: 6px;
+  font-size: 7px;
+  color: #38bdf8;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+@keyframes animShard1 {
+  0%, 10% { transform: translate(-15px, 20px) rotate(45deg); }
+  70%, 100% { transform: translate(0, 0) rotate(0deg); }
+}
+@keyframes animShard2 {
+  0%, 10% { transform: translate(15px, 20px) rotate(-45deg); }
+  70%, 100% { transform: translate(8px, 0) rotate(0deg); }
+}
+@keyframes animShard3 {
+  0%, 10% { transform: translate(0, 25px) rotate(90deg); }
+  70%, 100% { transform: translate(4px, -8px) rotate(0deg); }
+}
+
+/* 34. Hyperlapse */
+.v-hyperlapse .v-hyper-tunnel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v-hyperlapse .v-lamp {
+  position: absolute;
+  width: 4px;
+  height: 20px;
+  background: #fbbf24;
+  box-shadow: 0 0 12px #f59e0b;
+}
+.v-hyperlapse .v-lamp.l1 { animation: animLampStreak 1.4s linear infinite; }
+.v-hyperlapse .v-lamp.l2 { animation: animLampStreak 1.4s linear infinite 0.45s; }
+.v-hyperlapse .v-lamp.l3 { animation: animLampStreak 1.4s linear infinite 0.9s; }
+@keyframes animLampStreak {
+  0% { transform: scale(0.2) translate(-10px, -10px); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: scale(2.5) translate(-35px, 25px); opacity: 0; }
+}
+
+/* 35. Bullet Time */
+.v-bullet-time .v-bt-char-frozen {
+  width: 26px;
+  height: 26px;
+  background: #ea580c;
+  border-radius: 50%;
+}
+.v-bullet-time .v-bt-camera-ring {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  animation: animBulletCam 3s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+@keyframes animBulletCam {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 36. Stop Motion */
+.v-stop-motion {
+  display: flex;
+  gap: 6px;
+}
+.v-stop-motion .v-toy-block {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  animation: animStopStep 2.4s steps(1) infinite;
+}
+.v-stop-motion .v-toy-block.b1 { background: #ef4444; }
+.v-stop-motion .v-toy-block.b2 { background: #3b82f6; animation-delay: 0.4s; }
+.v-stop-motion .v-toy-block.b3 { background: #10b981; animation-delay: 0.8s; }
+@keyframes animStopStep {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-12px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(6px); }
+  100% { transform: translateY(0); }
+}
+
+/* 37. Rack Focus */
+.v-rack-focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+.v-rack-focus .v-rf-flower {
+  font-size: 18px;
+  animation: animFocusA 3s ease-in-out infinite alternate;
+}
+.v-rack-focus .v-rf-char {
+  font-size: 22px;
+  animation: animFocusB 3s ease-in-out infinite alternate;
+}
+@keyframes animFocusA {
+  0%, 30% { filter: blur(0); transform: scale(1.1); }
+  70%, 100% { filter: blur(4px); transform: scale(0.9); }
+}
+@keyframes animFocusB {
+  0%, 30% { filter: blur(4px); transform: scale(0.9); }
+  70%, 100% { filter: blur(0); transform: scale(1.1); }
+}
+
+/* 38. Lens Flare */
+.v-lens-flare .v-flare-sun {
+  width: 28px;
+  height: 28px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 30px #f59e0b, 0 0 60px #fbbf24;
+}
+.v-lens-flare .v-flare-beam {
+  position: absolute;
+  width: 120%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #38bdf8, #ec4899, transparent);
+  animation: animFlareSweep 3s ease-in-out infinite alternate;
+}
+@keyframes animFlareSweep {
+  0% { transform: rotate(-15deg) scaleX(0.8); opacity: 0.4; }
+  100% { transform: rotate(15deg) scaleX(1.2); opacity: 1; }
+}
+
+/* 39. Camera Shake */
+.v-camera-shake .v-heavy-weight {
+  font-size: 26px;
+  animation: animDropImpact 2.2s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+}
+@keyframes animDropImpact {
+  0% { transform: translateY(-30px); }
+  45% { transform: translateY(10px); }
+  50% { transform: translate(-4px, 12px) rotate(-3deg); }
+  55% { transform: translate(4px, 8px) rotate(3deg); }
+  60% { transform: translate(-3px, 11px) rotate(-2deg); }
+  70% { transform: translate(0, 10px); }
+  100% { transform: translateY(10px); }
+}
+
+/* 40. Motion Blur */
+.v-motion-blur .v-blur-train {
+  width: 50px;
+  height: 18px;
+  background: #38bdf8;
+  border-radius: 4px;
+  position: relative;
+  filter: blur(1.5px);
+  animation: animTrainRush 1.5s linear infinite;
+}
+@keyframes animTrainRush {
+  0% { transform: translateX(-70px); }
+  100% { transform: translateX(70px); }
+}
+
+/* 41. Color Grading */
+.v-color-grading .v-cg-split {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.v-color-grading .v-cg-raw {
+  flex: 1;
+  background: #64748b;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v-color-grading .v-cg-lut {
+  flex: 1;
+  background: linear-gradient(135deg, #0d9488, #ea580c);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 42. Letterbox */
+.v-letterbox .v-lb-bar {
+  position: absolute;
+  width: 100%;
+  height: 14px;
+  background: #000;
+  z-index: 2;
+  animation: animLetterbox 3s ease-in-out infinite alternate;
+}
+.v-letterbox .v-lb-bar.top { top: 0; }
+.v-letterbox .v-lb-bar.bottom { bottom: 0; }
+.v-letterbox .v-lb-scene {
+  font-size: 10px;
+  color: var(--color-gold);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+@keyframes animLetterbox {
+  0% { height: 2px; }
+  100% { height: 16px; }
+}
+
+/* 43. Bokeh */
+.v-bokeh .v-bokeh-orbs div {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(3px);
+  opacity: 0.6;
+}
+.v-bokeh .bo-1 { width: 22px; height: 22px; background: #f59e0b; top: 15px; left: 20px; animation: animBokehFloat 3s infinite alternate; }
+.v-bokeh .bo-2 { width: 30px; height: 30px; background: #ec4899; bottom: 20px; right: 25px; animation: animBokehFloat 4s infinite alternate 1s; }
+.v-bokeh .bo-3 { width: 18px; height: 18px; background: #38bdf8; top: 40px; right: 40px; animation: animBokehFloat 2.5s infinite alternate 0.5s; }
+@keyframes animBokehFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+/* 44. Tilt-Shift */
+.v-tilt-shift .v-ts-blur-top {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 25px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+.v-tilt-shift .v-ts-blur-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 25px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+.v-tilt-shift .v-ts-focus-strip {
+  display: flex;
+  gap: 16px;
+  font-size: 16px;
+  animation: animMiniDrive 3s linear infinite;
+}
+@keyframes animMiniDrive {
+  0% { transform: translateX(50px); }
+  100% { transform: translateX(-50px); }
+}
+
+/* 45. Fisheye Lens */
+.v-fisheye .v-fe-circle {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #1e293b 60%, #000 100%);
+}
+.v-fisheye .v-char-orange.fe-bulge {
+  transform: scale(1.3);
+}
+
+/* 46. God Rays */
+.v-god-rays .v-light-shafts .beam {
+  position: absolute;
+  width: 15px;
+  height: 120%;
+  background: linear-gradient(180deg, rgba(254, 240, 138, 0.5) 0%, transparent 100%);
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+.v-god-rays .beam.b1 { left: 20px; animation: animRayShimmer 2.5s infinite alternate; }
+.v-god-rays .beam.b2 { left: 45px; animation: animRayShimmer 3.2s infinite alternate 0.8s; }
+.v-god-rays .beam.b3 { left: 70px; animation: animRayShimmer 2.8s infinite alternate 1.5s; }
+@keyframes animRayShimmer {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.8; }
+}
+
+/* 47. Selective Color */
+.v-selective-color {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.v-selective-color .v-sc-crowd-mono {
+  filter: grayscale(1);
+  font-size: 18px;
+}
+.v-selective-color .v-char-orange.vivid {
+  font-size: 24px;
+  filter: drop-shadow(0 0 10px #f97316);
+}
+
+/* 48. Day for Night */
+.v-day-for-night .v-dfn-layer {
+  position: absolute;
+  inset: 0;
+  background: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: animDfnTint 3.5s ease-in-out infinite alternate;
+}
+.v-day-for-night .v-dfn-moon {
+  font-size: 24px;
+}
+@keyframes animDfnTint {
+  0% { filter: hue-rotate(0deg) brightness(1.2); }
+  100% { filter: hue-rotate(180deg) brightness(0.6); }
+}
+
+/* 49. Film Grain */
+.v-film-grain .v-grain-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06) 0, rgba(0,0,0,0.1) 2px);
+  background-size: 4px 4px;
+  animation: animGrainFlicker 0.2s steps(2) infinite;
+  pointer-events: none;
+}
+.v-film-grain .v-film-scratch {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.4);
+  animation: animScratchMove 1.8s steps(1) infinite;
+}
+@keyframes animGrainFlicker {
+  0% { transform: translate(1px, 1px); }
+  50% { transform: translate(-1px, -1px); }
+  100% { transform: translate(1px, 1px); }
+}
+@keyframes animScratchMove {
+  0% { left: 20%; opacity: 0.8; }
+  40% { left: 70%; opacity: 0.5; }
+  80% { left: 45%; opacity: 0.9; }
+  100% { left: 20%; opacity: 0; }
+}
+
+/* 50. One Take */
+.v-one-take .v-one-take-track {
+  display: flex;
+  gap: 16px;
+  animation: animOneTakePan 5s ease-in-out infinite alternate;
+}
+.v-one-take .room {
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+@keyframes animOneTakePan {
+  0% { transform: translateX(40px); }
+  50% { transform: translateX(0); }
+  100% { transform: translateX(-40px); }
+}
